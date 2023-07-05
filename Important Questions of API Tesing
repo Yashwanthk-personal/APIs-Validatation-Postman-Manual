@@ -1,0 +1,21 @@
+Questions for the Interview POV:
+1. Difference between PUT and POST.
+2. What is POJO.
+3. How to set values in POJO class.
+4. How to convert POJO class to JSON class.
+5. What is JSON Path.
+6. What is Query parameter.
+7. What is path parameter.
+8. How to create JSON object body.
+9. What are the major challenges faced in API testing?
+10. How do you extract data from a response in Rest Assured?
+11. What is the maximum size of a payload that can be sent via the POST method?
+12. Can a GET query be made in place of a PUT to create a resource? N
+13. How many types of Authentication are there in POSTMAN / Rest-Assured?
+14. How is chaining carried out in REST Assured?
+15. What are Serialization and Deserialization in Rest Assured?
+16. What is the best way to keep sensitive data out of the log in rest assured?
+17. How can we get size of JSON array in Rest assured?
+18. What are Authorization or API keys
+19. How do you test security testing using APIs
+
