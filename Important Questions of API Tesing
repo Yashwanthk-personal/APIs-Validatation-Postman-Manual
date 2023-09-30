@@ -19,3 +19,37 @@ Questions for the Interview POV:
 18. What are Authorization or API keys
 19. How do you test security testing using APIs
 
+Scenario-based API Testing Interview Questions for SDET/ QA Automation Role 👇👇👇
+API Testing Fundamentals
+👉 Why is API Testing important in modern software development?
+👉 Can you share real-world scenarios where you choose between GET and POST HTTP methods?
+👉 Explain POST, PUT, and PATCH with real-life examples from web applications you've worked on.
+👉 What does idempotence mean in the context of APIs, and why is it a valuable trait in API design?
+👉 When conducting API testing, how do you prioritize and approach the validation of request headers, especially in terms of security and regulatory compliance?
+
+📌 API Testing Techniques
+👉 Compare SOAP and REST API testing by drawing parallels with well-known web services.
+👉 Put yourself in the shoes of a QA tester for a Weather API. What specific aspects would you focus on while verifying the response data for a GET request?
+👉 In the context of Rest-Assured, describe your process for extracting and applying request header values effectively in various test scenarios.
+👉 When compiling API test reports, what key information and metrics do you include to deliver comprehensive insights and support decision-making?
+
+📌 API Concepts and Technologies
+👉 Can you provide concrete use cases illustrating the distinction between URI and URL, emphasizing their practical relevance in API design?
+👉 Drawing from your experience, discuss your approaches for testing API endpoints that deal with expired or invalid authentication tokens, in a real-world context.
+👉 Explain how an API Gateway enhances API functionality and security, citing cases where it made a noticeable difference in your projects.
+
+📌 HTTP Methods and Idempotency
+👉 Can you recall specific scenarios from your projects where you opted for POST, PUT, or PATCH, and explain how their idempotent nature influenced your decision-making?
+👉 Provide real-world insights into whether POST and PUT HTTP methods are cacheable.
+
+📌 API Security
+👉 Share notable instances in your career where implementing rate limiting was crucial to mitigate security threats or prevent resource overutilization in APIs.
+
+📌 Header Testing and Request Handling
+👉 Discuss practical scenarios where asserting request headers played a key role in your API testing efforts, and explain how this contributed to test quality.
+👉 Walk us through your methodology for extracting and utilizing request header values in Rest-Assured for various testing scenarios, providing real-life use cases.
+
+📌 JSON and Data Formats
+👉 Discuss your experience in implementing POJO classes and serialization in RestAssured to maintain data consistency and enhance testing efficiency.
+👉 Your approach to validating API responses, emphasizes the role of JSON Schema in ensuring data integrity.
+
