@@ -4,16 +4,13 @@ Lets learn a very important difference in API : GET vs HEAD
 🔴 GET Method
 *****************
 
-✅ Usage:
+✅ Usage: The GET method is used to request data from the server. It is meant for retrieving resources identified by the given URL. GET requests should only retrieve data and
+should not have any other side effects on the server.
 
-The GET method is used to request data from the server. It is meant for retrieving resources identified by the given URL. GET requests should only retrieve data and should not have any other side effects on the server.
-
-✅ Example Scenario:
-
-When you open a web page in your browser, the browser sends a GET request to the server to fetch the HTML, CSS, JavaScript, and other assets required to render the web page.
+✅ Example Scenario: When you open a web page in your browser, the browser sends a GET request to the server to fetch the HTML, CSS, JavaScript, and other assets 
+required to render the web page.
 
 ✅ REST Assured Example:
-
 given()
 .when()
 .get("/api/users/123")
@@ -21,9 +18,7 @@ given()
 .statusCode(200)
 .body("key", equalTo("value"));
 
-✅ Response:
-
-The server processes the request and returns the requested data in the response body along with metadata (such as headers and status codes).
+✅ Response: The server processes the request and returns the requested data in the response body along with metadata (such as headers and status codes).
 
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -34,20 +29,23 @@ Content-Type: application/json
   "status": "active"
 }
 
+1. The GET request method is used to request data from a specified resource, typically a web server.
+2. It is a safe and idempotent operation, which means it should not change the server's state or have any side effects.
+3. GET requests are typically used for retrieving data, such as web pages, images, documents, or any resource that doesn't require data to be sent to the server.
+4. Parameters are usually included in the URL's query string, e.g., https://example.com/api/resource?id=123.
+5. GET requests can be cached by browsers and intermediaries, making them suitable for read-only operations.
+6. They are widely used for fetching web pages and data from APIs.
+
 ******************
 🔴 HEAD Method
 ******************
 
-✅ Usage:
+✅ Usage: The HEAD method is very similar to GET but is used when you only want to retrieve the headers of the response without the response body. It is useful when you 
+need to check if a resource exists, retrieve metadata, or check the resource's modification date without actually downloading the content.
 
-The HEAD method is very similar to GET but is used when you only want to retrieve the headers of the response without the response body. It is useful when you need to check if a resource exists, retrieve metadata, or check the resource's modification date without actually downloading the content.
-
-✅ Example Scenario:
-
-When you want to check if a specific file exists on a web server without downloading the entire file, you can use the HEAD method.
+✅ Example Scenario: When you want to check if a specific file exists on a web server without downloading the entire file, you can use the HEAD method.
 
 ✅ REST Assured Example:
-
 given()
 .when()
 .head("/api/users/123")
@@ -55,15 +53,19 @@ given()
 .statusCode(200)
 .header("Content-Type", "application/json");
 
-✅ Response
-
-The server processes the request but only returns the headers (metadata) in the response, not the actual data.
+✅ Response: The server processes the request but only returns the headers (metadata) in the response, not the actual data.
 
 HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 548
 Last-Modified: Tue, 10 Aug 2023 15:30:00 GMT
 
+1. The HEAD request method is similar to GET, but it is used to request the headers of a resource without retrieving the resource's body.
+2. It is useful when you want to check the status or metadata of a resource, such as its content type or last modification date, without actually downloading the resource.
+3. Like GET, HEAD requests are also safe and idempotent, meaning they should not change the server's state.
+4. They are often used to check the freshness of cached resources or to determine if a resource exists.
+
 In summary, GET is used for retrieving data along with the response body, while HEAD is used for retrieving metadata and headers without the response body.
 
-IMP: Both methods are useful in different scenarios, and the choice between them depends on your specific requirements, such as whether you need the actual content or just metadata.
+IMP: Both methods are useful in different scenarios, and the choice between them depends on your specific requirements, such as whether you need the actual content
+or just metadata.
