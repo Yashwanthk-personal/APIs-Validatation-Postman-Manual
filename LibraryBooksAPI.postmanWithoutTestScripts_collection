@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "08a496c6-7c7c-4f57-be12-dfff0d1f9a41",
+		"name": "LibraryBooksAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27489852"
+	},
+	"item": [
+		{
+			"name": "Add Book into Library",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"name\":\"Learn REST Assured Automation\",\r\n\"isbn\":\"ass\",\r\n\"aisle\":\"077\",\r\n\"author\": \"Yashwanth\"\r\n}\r\n ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://216.10.245.166/Library/Addbook.php",
+					"protocol": "http",
+					"host": [
+						"216",
+						"10",
+						"245",
+						"166"
+					],
+					"path": [
+						"Library",
+						"Addbook.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://216.10.245.166/Library/GetBook.php?AuthorName=\"John foe\"",
+					"protocol": "http",
+					"host": [
+						"216",
+						"10",
+						"245",
+						"166"
+					],
+					"path": [
+						"Library",
+						"GetBook.php"
+					],
+					"query": [
+						{
+							"key": "AuthorName",
+							"value": "\"John foe\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the added Books Details using ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://216.10.245.166/Library/GetBook.php?ID=ass007",
+					"protocol": "http",
+					"host": [
+						"216",
+						"10",
+						"245",
+						"166"
+					],
+					"path": [
+						"Library",
+						"GetBook.php"
+					],
+					"query": [
+						{
+							"key": "ID",
+							"value": "ass007"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book Details",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \r\n\"ID\" : \"ass007\"\r\n \r\n} \r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://216.10.245.166/Library/DeleteBook.php",
+					"protocol": "http",
+					"host": [
+						"216",
+						"10",
+						"245",
+						"166"
+					],
+					"path": [
+						"Library",
+						"DeleteBook.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
