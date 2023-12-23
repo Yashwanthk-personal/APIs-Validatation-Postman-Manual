@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "70c783cf-8bf6-4c66-a77f-a99e53a894ae",
+		"name": "APIGoogleMaps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27489852"
+	},
+	"item": [
+		{
+			"name": "Add Place to Google API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"var JSONData = JSON.parse(responseBody);\r",
+							"console.log(JSONData)\r",
+							"pm.environment.set(\"QA_placeID\", JSONData.place_id);\r",
+							"console.log(pm.environment.get(\"QA_placeID\"));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var randomstring = \"Frontline house\"+Math.random().toString(36).substring(2)\r",
+							"\r",
+							"pm.collectionVariables.set(\"name_var\", randomstring);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"location\": {\r\n    \"lat\": -38.383494,\r\n    \"lng\": 33.427362\r\n  },\r\n  \"accuracy\": 50,\r\n  \"name\": \"{{name_var}}\",\r\n  \"phone_number\": \"(+91) 983 893 3937\",\r\n  \"address\": \"29, side layout, cohen 09\",\r\n  \"types\": [\r\n    \"shoe park\",\r\n    \"shop\"\r\n  ],\r\n  \"website\": \"http://google.com\",\r\n  \"language\": \"French-IN\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/add/json?key=qaclick123",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"add",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "qaclick123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the Added place details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"pm.test(\"Successful GET request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"var retrivedData = pm.response.json();\r",
+							"console.log(retrivedData.name);\r",
+							"pm.test(\"Validate address created\", () => {\r",
+							"pm.expect(retrivedData.name).eql(pm.collectionVariables.get(\"name_var\"))});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/get/json?place_id={{QA_placeID}}&key=qaclick123",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"get",
+						"json"
+					],
+					"query": [
+						{
+							"key": "place_id",
+							"value": "{{QA_placeID}}"
+						},
+						{
+							"key": "key",
+							"value": "qaclick123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update the address of an added place",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var randomstring2 = \"70 Summer walk, CANADA \"+Math.random().toString(36).substring(2)\r",
+							"\r",
+							"pm.collectionVariables.set(\"Updated_Address\", randomstring2);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var UpdatedData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validate the Response message\", () => {\r",
+							"    pm.expect(UpdatedData.msg).eql(\"Address successfully updated\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"place_id\":\"{{QA_placeID}}\",\r\n\"address\":\"{{Updated_Address}}\",\r\n\"key\":\"qaclick123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/update/json?key=qaclick123&place_id={{QA_placeID}}",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"update",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "qaclick123"
+						},
+						{
+							"key": "place_id",
+							"value": "{{QA_placeID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the Updated Place Data - Address",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var updatedAddressDate = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validate the Address updated\", () => {\r",
+							"    pm.expect(updatedAddressDate.address).eql(pm.collectionVariables.get(\"Updated_Address\"))\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/get/json?place_id={{QA_placeID}}&key=qaclick123",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"get",
+						"json"
+					],
+					"query": [
+						{
+							"key": "place_id",
+							"value": "{{QA_placeID}}"
+						},
+						{
+							"key": "key",
+							"value": "qaclick123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the added place",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"place_id\":\"{{QA_placeID}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/delete/json?key=qaclick123",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"delete",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "qaclick123"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "placeId",
+			"value": ""
+		},
+		{
+			"key": "place_id",
+			"value": ""
+		},
+		{
+			"key": "placeID",
+			"value": ""
+		},
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "name_var",
+			"value": ""
+		},
+		{
+			"key": "Updated_Address",
+			"value": ""
+		}
+	]
+}
